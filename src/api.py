@@ -20,4 +20,8 @@ class InputData(BaseModel):
 def predict_diabetes(data: InputData):
     input_dict = data.dict()
     result = predict(model, input_dict)
-    return {"prediction": result}
+
+    label = "No diabetes" if result == 0 else "Diabetes"
+
+    return {"prediction": result
+            , "label": label}
